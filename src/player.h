@@ -8,7 +8,9 @@
 
 typedef struct {
 		Sprite sprite;
-
+		float speed;
+		Vec2 velocity;
+		float jump_force;
 } Player;
 
 void player_draw(const Player *player, GLFWwindow *window, Vec2 *world_size);

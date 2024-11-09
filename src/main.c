@@ -64,7 +64,7 @@ int main(int argc, char const *argv[]) {
     
     GLuint square_vao = load_vao(square, sizeof(square), indice, sizeof(indice));
     Sprite s = {{{0.0, 0.0}, {3.0, 3.0}}, shader_prog, texture ,square_vao};
-    Player player = {s};
+    Player player = {s, 10.0f, {0.0f, 0.0f}, 400.0f};
 
     double start_time = 0.0;
     float delta_time = 0.0;
