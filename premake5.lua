@@ -14,7 +14,8 @@ project "platformer"
            "Dependencies/stb/src/stb_image.c"}
 
    includedirs { "Dependencies/glad/include",
-                 "Dependencies/stb/include"}
+                 "Dependencies/stb/include",
+                 "include"}
 
    filter "system:not windows"
         links {"glfw", "m"}

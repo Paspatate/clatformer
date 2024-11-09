@@ -3,10 +3,10 @@
 #include "image.h"
 #include "model.h"
 #include "player.h"
+#include "sprite.h"
 #include "glad/gl.h"
 #include "GLFW/glfw3.h"
 #include <stdio.h>
-#include <math.h>
 
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
@@ -57,11 +57,15 @@ int main(int argc, char const *argv[]) {
 
     GLuint shader_prog = load_program("./res/simple.vert", "./res/simple.frag");
     GLuint texture = load_texture("res/untitled.png");
+
     Vec2 position = {0.0, 0.0}; 
     Vec2 size = {5, 5};
     Vec2 world_unit = {20, 20};
+    
     GLuint square_vao = load_vao(square, sizeof(square), indice, sizeof(indice));
-    Player player = {texture, shader_prog, square_vao, size, position};
+    Sprite s = {{{0.0, 0.0}, {3.0, 3.0}}, shader_prog, texture ,square_vao};
+    Player player = {s};
+
     double start_time = 0.0;
     float delta_time = 0.0;
 
@@ -70,13 +74,13 @@ int main(int argc, char const *argv[]) {
 
         glfwPollEvents();
 
-        player.position.x = (float)sin(glfwGetTime() * 5) * 2;
-        player.position.y = (float)cos(glfwGetTime() * 5) * 2;
+        player_update(&player, window, delta_time);
 
         glClearColor(0.2, 0.2, 0.2, 1);
         glClear(GL_COLOR_BUFFER_BIT);
         
         player_draw(&player, window, &world_unit);
+        sprite_draw(&s, window, &world_unit);
 
         glfwSwapBuffers(window);
         delta_time = (float)(glfwGetTime() - start_time);
