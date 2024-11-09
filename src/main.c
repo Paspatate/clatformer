@@ -48,18 +48,18 @@ int main(int argc, char const *argv[]) {
     glfwSetKeyCallback(window, key_callback);
     glfwSetWindowSizeCallback(window, window_size_callback);
 
-    float square[] = {-1.0,  1.0,
-                       1.0,  1.0, 
-                       1.0, -1.0, 
-                      -1.0, -1.0};
+    float square[] = {-1.0,  1.0, 0.0, 1.0,
+                       1.0,  1.0, 1.0, 1.0, 
+                       1.0, -1.0, 1.0, 0.0,
+                      -1.0, -1.0, 0.0, 0.0};
     
     int indice[] = {0, 1, 2, 0, 2, 3};
 
     GLuint shader_prog = load_program("./res/simple.vert", "./res/simple.frag");
     GLuint texture = load_texture("res/untitled.png");
     Vec2 position = {0.0, 0.0}; 
-    Vec2 size = {2, 2};
-    Vec2 world_unit = {50, 50};
+    Vec2 size = {5, 5};
+    Vec2 world_unit = {20, 20};
     GLuint square_vao = load_vao(square, sizeof(square), indice, sizeof(indice));
     Player player = {texture, shader_prog, square_vao, size, position};
     double start_time = 0.0;

@@ -1,6 +1,7 @@
 #version 460 core
 
 layout (location = 0) in vec2 modelPos;
+layout (location = 1) in vec2 texPos;
 
 out vec4 fPos;
 
@@ -20,7 +21,6 @@ void main() {
     float render_x = worldPos.x * ratio_x + scaled_model_x;
     float render_y = worldPos.y * ratio_y + scaled_model_y;
 
+    fPos = vec4(texPos.x, texPos.y, 1.0, 1.0);
     gl_Position = vec4(render_x, render_y, 1.0, 1.0);
-
-    fPos = vec4(modelPos.x, modelPos.y, 1.0, 1.0);
 }
