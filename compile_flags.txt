@@ -1,0 +1,2 @@
+-IDependencies/glad/include
+-IDependencies/stb/include
