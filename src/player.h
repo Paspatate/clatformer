@@ -6,12 +6,13 @@
 #include "vector_math.h"
 
 typedef struct {
-	GLuint texture;
-	GLuint shader_program;
-	GLuint model;
-	Vec2 position;
+    GLuint texture;
+    GLuint shader_program;
+    GLuint model;
+    Vec2 size;
+    Vec2 position;
 } Player;
 
-void player_draw(const Player *player, GLFWwindow *window);
+void player_draw(const Player *player, GLFWwindow *window, Vec2 *world_size);
 
 #endif

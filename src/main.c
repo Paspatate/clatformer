@@ -2,6 +2,7 @@
 #include "shader.h"
 #include "image.h"
 #include "model.h"
+#include "player.h"
 #include "glad/gl.h"
 #include "GLFW/glfw3.h"
 #include <stdio.h>
@@ -23,8 +24,7 @@ GLFWwindow *init_opengl_window() {
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     GLFWwindow* window = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "game", NULL, NULL);
-
-    if (!window) {
+if (!window) {
         glfwDestroyWindow(window);
         glfwTerminate();
         printf("ERROR: could not create window");
@@ -56,7 +56,7 @@ int main(int argc, char const *argv[]) {
     Vec2 size = {1, 1};
     Vec2 world_unit = {50, 50};
     GLuint square_vao = load_vao(square, sizeof(square), indice, sizeof(indice));
-
+    Player player = {texture, shader_prog, square_vao, size, position};
     double start_time = 0.0;
     float delta_time = 0.0;
 
@@ -69,6 +69,8 @@ int main(int argc, char const *argv[]) {
 
         glClearColor(0.2, 0.2, 0.2, 1);
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        player_draw(&player, window, &world_unit);
 
         glUseProgram(shader_prog);
         glBindVertexArray(square_vao);
